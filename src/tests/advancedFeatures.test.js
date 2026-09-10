@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { scenarios } from '../constants/scenarios';
-import { NEGOTIATION_STATUS, NEGOTIATION_MODE, DECISION_TYPE } from '../constants/negotiationConstants';
+import { NEGOTIATION_STATUS, NEGOTIATION_MODE } from '../constants/negotiationConstants';
 import { NegotiationApi } from '../services/NegotiationApi';
 
 describe('Milestone 1 & 2 - Advanced Modules & Multi-Scenario Tests', () => {

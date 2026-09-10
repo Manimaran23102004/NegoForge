@@ -1,5 +1,3 @@
-import React from 'react';
-
 export function OutcomeReportModal({ report, onClose }) {
   if (!report) return null;
 
@@ -8,11 +6,8 @@ export function OutcomeReportModal({ report, onClose }) {
     status,
     roundsTaken,
     agreementTerm,
-    finalPrice,
     currency,
-    unit,
     initialGap,
-    finalGap,
     gapReductionPercentage,
     totalConcessionVolume,
     winWinScore,

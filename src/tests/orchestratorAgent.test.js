@@ -121,7 +121,6 @@ describe('Milestone 2 - Task 1: Orchestrator Agent & State Management Foundation
       while (state.negotiationStatus === NEGOTIATION_STATUS.IN_PROGRESS && stepCount < maxStepsAllowed) {
         stepCount++;
         const turnBefore = state.currentAgentTurn;
-        const roundBefore = state.currentRound;
 
         state = orchestrator.executeTurnStep();
 

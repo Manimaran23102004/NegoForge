@@ -48,6 +48,7 @@ function App() {
     allPersonalitiesSelected &&
     (selectedMode === NEGOTIATION_MODE.SIMULATION || (selectedMode === NEGOTIATION_MODE.PRACTICE && humanRole));
 
+  // Start Negotiation
   const handleStart = () => {
     if (isSetupComplete && scenario) {
       try {

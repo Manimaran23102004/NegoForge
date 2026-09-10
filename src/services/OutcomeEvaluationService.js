@@ -86,7 +86,7 @@ export const OutcomeEvaluationService = {
     }
 
     // Per-Agent Performance Rating
-    const computeAgentMetrics = (id, concessions, initialVal) => {
+    const computeAgentMetrics = (id, concessions) => {
       const personality = agentPersonality[id] || 'Collaborative';
       const goal = agentGoals[id] || '';
       const constraint = agentConstraints[id] || '';
@@ -114,8 +114,8 @@ export const OutcomeEvaluationService = {
       };
     };
 
-    const agent1Metrics = computeAgentMetrics(agent1Id, agent1Concessions, initialOffer1);
-    const agent2Metrics = computeAgentMetrics(agent2Id, agent2Concessions, initialOffer2);
+    const agent1Metrics = computeAgentMetrics(agent1Id, agent1Concessions);
+    const agent2Metrics = computeAgentMetrics(agent2Id, agent2Concessions);
 
     // Key Takeaways / Strategic Lessons
     const takeaways = [];

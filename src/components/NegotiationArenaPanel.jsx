@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { NegotiationApi } from '../services/NegotiationApi';
 import { NEGOTIATION_STATUS, CONCESSION_DIRECTION, NEGOTIATION_MODE, DECISION_TYPE, STANCE_TYPE } from '../constants/negotiationConstants';
 import { OutcomeReportModal } from './OutcomeReportModal';
@@ -28,11 +28,8 @@ export function NegotiationArenaPanel({ state, onStateChange, onReset }) {
     deadlockDetected,
     deadlockReason,
     agentGoals = {},
-    agentConstraints = {},
     agentPersonality = {},
     agentStances = {},
-    counterOffers = [],
-    decisions = [],
     negotiationHistory = [],
   } = state;
 
@@ -57,18 +54,6 @@ export function NegotiationArenaPanel({ state, onStateChange, onReset }) {
   }
 
   const gapReduction = initialGap > 0 ? Math.max(0, Math.min(100, Math.round(((initialGap - currentGap) / initialGap) * 100))) : 0;
-
-  // Auto trigger outcome report when negotiation ends
-  useEffect(() => {
-    if ([NEGOTIATION_STATUS.AGREEMENT, NEGOTIATION_STATUS.REJECTED, NEGOTIATION_STATUS.DEADLOCK].includes(negotiationStatus)) {
-      try {
-        const report = NegotiationApi.getOutcomeReport(negotiationId);
-        setOutcomeReport(report);
-      } catch (err) {
-        console.error('Failed to get report:', err);
-      }
-    }
-  }, [negotiationStatus, negotiationId]);
 
   const handleStepTurn = () => {
     try {
@@ -105,6 +90,7 @@ export function NegotiationArenaPanel({ state, onStateChange, onReset }) {
         currentState = NegotiationApi.executeTurn(negotiationId);
         onStateChange(currentState);
       } catch (err) {
+        console.error('Auto play error:', err);
         clearInterval(interval);
         setIsAutoPlaying(false);
       }
